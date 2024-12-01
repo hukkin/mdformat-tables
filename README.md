@@ -45,7 +45,7 @@ tox
 To run the code formatting and style checks:
 
 ```bash
-tox -e py37-pre-commit
+tox -e py311-pre-commit
 ```
 
 or directly
@@ -58,7 +58,7 @@ pre-commit run --all
 To run the pre-commit hook test:
 
 ```bash
-tox -e py37-hook
+tox -e py311-hook
 ```
 
 ## Publish to PyPi
@@ -73,7 +73,7 @@ or trigger the GitHub Action job, by creating a release with a tag equal to the 
 
 Note, this requires generating an API key on PyPi and adding it to the repository `Settings/Secrets`, under the name `PYPI_KEY`.
 
-[ci-badge]: https://github.com/executablebooks/mdformat-tables/workflows/CI/badge.svg?branch=master
+[ci-badge]: https://github.com/executablebooks/mdformat-tables/actions/workflows/tests.yml/badge.svg?branch=master
 [ci-link]: https://github.com/executablebooks/mdformat/actions?query=workflow%3ACI+branch%3Amaster+event%3Apush
 [cov-badge]: https://codecov.io/gh/executablebooks/mdformat-tables/branch/master/graph/badge.svg
 [cov-link]: https://codecov.io/gh/executablebooks/mdformat-tables

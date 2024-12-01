@@ -24,7 +24,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: [3.7, 3.11]
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
         os: [ubuntu-latest, windows-latest]
 
     steps:
@@ -48,10 +48,10 @@ jobs:
 
     # FYI: Requires token to continue usage
     # - name: Upload to Codecov
-    #   if: matrix.python-version == 3.7
+    #   if: matrix.python-version == 3.9
     #   uses: codecov/codecov-action@v1
     #   with:
-    #     name: pytests-py3.7
+    #     name: pytests-py3.9
     #     flags: pytests
     #     file: ./coverage.xml
     #     fail_ci_if_error: true
@@ -64,7 +64,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: '3.9'
 
     - name: Installation (deps and package)
       run: |
@@ -83,10 +83,10 @@ jobs:
     steps:
     - name: Checkout source
       uses: actions/checkout@v4
-    - name: Set up Python 3.7
+    - name: Set up Python 3.9
       uses: actions/setup-python@v5
       with:
-        python-version: 3.7
+        python-version: '3.9'
     - name: install flit
       run: |
         pip install flit~=3.0
