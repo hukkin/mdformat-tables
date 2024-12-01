@@ -25,7 +25,7 @@ def test_fixtures__cli(line, title, text, expected, tmp_path):
     file_path = tmp_path / "test_markdown.md"
     file_path.write_text(text, encoding="utf-8")
     assert mdformat._cli.run([str(file_path)]) == 0
-    md_new = file_path.read_text()
+    md_new = file_path.read_text(encoding="utf-8")
     assert md_new == expected
 
 
@@ -51,5 +51,5 @@ def test_fixtures_compact__cli(line, title, text, expected, tmp_path):
     file_path = tmp_path / "test_markdown.md"
     file_path.write_text(text, encoding="utf-8")
     assert mdformat._cli.run([str(file_path), "--compact-tables"]) == 0
-    md_new = file_path.read_text()
+    md_new = file_path.read_text(encoding="utf-8")
     assert md_new == expected
