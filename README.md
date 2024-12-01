@@ -4,7 +4,7 @@
 [![codecov.io][cov-badge]][cov-link]
 [![PyPI version][pypi-badge]][pypi-link]
 
-An [mdformat](https://github.com/executablebooks/mdformat) plugin for rendering tables.
+An [mdformat](https://github.com/hukkin/mdformat) plugin for rendering tables.
 
 For example, converting:
 
@@ -73,9 +73,9 @@ or trigger the GitHub Action job, by creating a release with a tag equal to the 
 
 Note, this requires generating an API key on PyPi and adding it to the repository `Settings/Secrets`, under the name `PYPI_KEY`.
 
-[ci-badge]: https://github.com/executablebooks/mdformat-tables/actions/workflows/tests.yml/badge.svg?branch=master
-[ci-link]: https://github.com/executablebooks/mdformat/actions?query=workflow%3ACI+branch%3Amaster+event%3Apush
-[cov-badge]: https://codecov.io/gh/executablebooks/mdformat-tables/branch/master/graph/badge.svg
-[cov-link]: https://codecov.io/gh/executablebooks/mdformat-tables
+[ci-badge]: https://github.com/hukkin/mdformat-tables/actions/workflows/tests.yml/badge.svg?branch=master
+[ci-link]: https://github.com/hukkin/mdformat/actions?query=workflow%3ACI+branch%3Amaster+event%3Apush
+[cov-badge]: https://codecov.io/gh/hukkin/mdformat-tables/branch/master/graph/badge.svg
+[cov-link]: https://codecov.io/gh/hukkin/mdformat-tables
 [pypi-badge]: https://img.shields.io/pypi/v/mdformat-tables.svg
 [pypi-link]: https://pypi.org/project/mdformat-tables

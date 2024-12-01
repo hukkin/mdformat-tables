@@ -6,8 +6,10 @@ build-backend = "flit_core.buildapi"
 module = "mdformat_tables"
 author = "Chris Sewell"
 author-email = "executablebooks@gmail.com"
+maintainer = "Taneli Hukkinen"
+maintainer-email = "hukkin@users.noreply.github.com"
 description-file = "README.md"
-home-page = "https://github.com/executablebooks/mdformat-tables"
+home-page = "https://github.com/hukkin/mdformat-tables"
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",

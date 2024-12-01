@@ -136,7 +136,7 @@ a
 :\-
 .
 
-Expanded Unicode (https://github.com/executablebooks/mdformat-tables/issues/16)
+Expanded Unicode (https://github.com/hukkin/mdformat-tables/issues/16)
 .
 | 模型 | 时间        |
 |-------|------|
