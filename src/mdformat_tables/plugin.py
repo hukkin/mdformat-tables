@@ -1,5 +1,5 @@
 import argparse
-from typing import Iterable, List, Mapping, Sequence, Union
+from collections.abc import Iterable, Mapping, Sequence
 
 from markdown_it import MarkdownIt
 from mdformat.renderer import RenderContext, RenderTreeNode
@@ -40,8 +40,8 @@ def _center(text: str, width: int) -> str:
 
 def _to_string(
     rows: Sequence[Sequence[str]], align: Sequence[Sequence[str]], widths: Sequence[int]
-) -> List[str]:
-    def join_row(items: Union[Iterable[str], Sequence[str]]) -> str:
+) -> list[str]:
+    def join_row(items: Iterable[str]) -> str:
         return "| " + " | ".join(items) + " |"
 
     def format_delimiter_cell(index: int, align: str) -> str:
@@ -60,13 +60,13 @@ def _to_string(
     delimiter = join_row(
         (format_delimiter_cell(i, al) for i, al in enumerate(align[0]))
     )
-    rows = [
+    joined_rows = (
         join_row(
             pad[_al](text, widths[i]) for i, (text, _al) in enumerate(zip(row, aligns))
         )
         for row, aligns in zip(rows[1:], align[1:])
-    ]
-    return [header, delimiter, *rows]
+    )
+    return [header, delimiter, *joined_rows]
 
 
 def _render_table(node: RenderTreeNode, context: RenderContext) -> str:
@@ -80,8 +80,8 @@ def _render_table(node: RenderTreeNode, context: RenderContext) -> str:
     compact_tables_from_api = context.options["mdformat"].get("compact_tables")
     compact_tables = compact_tables_from_cli_or_toml or compact_tables_from_api
     # gather rendered cell content into row * column array
-    rows: List[List[str]] = []
-    align: List[List[str]] = []
+    rows: list[list[str]] = []
+    align: list[list[str]] = []
     for descendant in node.walk(include_self=False):
         if descendant.type == "tr":
             rows.append([])
