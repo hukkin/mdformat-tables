@@ -1,0 +1,9 @@
+[flake8]
+max-line-length = 88
+max-complexity = 10
+extend-ignore =
+    # E203: Whitespace before ':' (violates PEP8 and black style)
+    E203,
+    # A005: A module is shadowing a Python builtin module
+    A005,
+extend-exclude = */site-packages/*
