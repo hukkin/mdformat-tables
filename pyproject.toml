@@ -1,39 +1,37 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
+requires = ["flit_core>=3.2.0,<4"]
 build-backend = "flit_core.buildapi"
 
-[tool.flit.metadata]
-module = "mdformat_tables"
-author = "Chris Sewell"
-author-email = "executablebooks@gmail.com"
-maintainer = "Taneli Hukkinen"
-maintainer-email = "hukkin@users.noreply.github.com"
-description-file = "README.md"
-home-page = "https://github.com/hukkin/mdformat-tables"
+[project]
+name = "mdformat-tables"
+version = "1.0.0"  # DO NOT EDIT THIS LINE MANUALLY. LET bump2version UTILITY DO IT
+authors = [
+    { name = "Chris Sewell", email = "executablebooks@gmail.com"},
+]
+maintainers = [
+    { name = "Taneli Hukkinen", email = "hukkin@users.noreply.github.com"},
+]
+description = "Mdformat plugin for rendering tables"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = [
+    'mdformat >=0.7.19,<0.8.0',
+    'wcwidth >=0.2.13',
+]
 classifiers = [
-    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Documentation",
+    "Topic :: Text Processing :: Markup",
 ]
-keywords = "mdformat,markdown,markdown-it"
+keywords = ["mdformat", "markdown", "formatter", "gfm"]
 
-requires-python=">=3.9"
-requires=["mdformat>=0.7.19,<0.8.0", "wcwidth>=0.2.13"]
+[project.urls]
+"Homepage" = "https://github.com/hukkin/mdformat-tables"
 
-[tool.flit.metadata.requires-extra]
-test = [
-    "pytest~=6.0",
-    "coverage",
-    "pytest-cov",
-]
+[project.entry-points."mdformat.parser_extension"]
+"tables" = "mdformat_tables"
 
-[tool.flit.entrypoints."mdformat.parser_extension"]
-tables = "mdformat_tables"
-
-[tool.flit.sdist]
-include = []
-exclude = [".github/", "tests/"]
 
 [tool.isort]
 # Force imports to be sorted by module, independent of import type
@@ -46,3 +44,39 @@ known_first_party = ["mdformat_tables", "tests"]
 
 # Settings for Black compatibility
 profile = "black"
+
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --strict-config"
+xfail_strict = true
+
+
+[tool.tox]
+requires = ["tox>=4.21.1"]
+# Only run pytest envs when no args given to tox
+env_list = ["3.9", "3.10", "3.11", "3.12", "3.13"]
+
+[tool.tox.env_run_base]
+description = "run tests under {base_python}"
+deps = [
+    "-r tests/requirements.txt",
+]
+commands = [
+    ["pytest", { replace = "posargs", default = ["--cov", "--cov-fail-under", "100"], extend = true }],
+]
+
+[tool.tox.env."pre-commit"]
+description = "run linters"
+skip_install = true
+deps = ["pre-commit"]
+commands = [
+    ["pre-commit", "run", { replace = "posargs", default = ["--all-files"], extend = true }],
+]
+
+[tool.tox.env."hook"]
+description = "test unreleased changes via pre-commit hook"
+skip_install = true
+deps = ["pre-commit"]
+commands = [
+    ["pre-commit", "run", "--config", ".pre-commit-test.yaml", { replace = "posargs", default = ["--all-files", "--verbose", "--show-diff-on-failure"], extend = true }],
+]
