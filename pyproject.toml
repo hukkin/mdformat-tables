@@ -80,3 +80,22 @@ deps = ["pre-commit"]
 commands = [
     ["pre-commit", "run", "--config", ".pre-commit-test.yaml", { replace = "posargs", default = ["--all-files", "--verbose", "--show-diff-on-failure"], extend = true }],
 ]
+
+
+[tool.mypy]
+show_error_codes = true
+warn_unreachable = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+# Disabling incremental mode is required for `warn_unused_configs = true` to work
+incremental = false
+disallow_untyped_defs = true
+check_untyped_defs = true
+strict_equality = true
+implicit_reexport = false
+no_implicit_optional = true
+
+[[tool.mypy.overrides]]
+module = "wcwidth.*"
+ignore_missing_imports = true
