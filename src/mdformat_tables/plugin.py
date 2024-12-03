@@ -13,7 +13,7 @@ def add_cli_argument_group(group: argparse._ArgumentGroup) -> None:
     group.add_argument(
         "--compact-tables",
         action="store_true",
-        help="If specified, do not add padding to table cells.",
+        help="do not add padding to table cells",
     )
 
 
