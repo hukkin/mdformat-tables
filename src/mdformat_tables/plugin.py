@@ -12,7 +12,8 @@ def add_cli_argument_group(group: argparse._ArgumentGroup) -> None:
     `mdit.options["mdformat"]["plugin"]["tables"]`."""
     group.add_argument(
         "--compact-tables",
-        action="store_true",
+        action="store_const",
+        const=True,
         help="do not add padding to table cells",
     )
 

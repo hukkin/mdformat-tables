@@ -53,3 +53,16 @@ def test_fixtures_compact__cli(line, title, text, expected, tmp_path):
     assert mdformat._cli.run([str(file_path), "--compact-tables"]) == 0
     md_new = file_path.read_text(encoding="utf-8")
     assert md_new == expected
+
+
+@pytest.mark.parametrize(
+    "line,title,text,expected", fixtures_compact, ids=[f[1] for f in fixtures_compact]
+)
+def test_fixtures_compact__toml(line, title, text, expected, tmp_path):
+    conf_path = tmp_path / ".mdformat.toml"
+    conf_path.write_text("[plugin.tables]\ncompact_tables=true", encoding="utf-8")
+    file_path = tmp_path / "test_markdown.md"
+    file_path.write_text(text, encoding="utf-8")
+    assert mdformat._cli.run([str(file_path)]) == 0
+    md_new = file_path.read_text(encoding="utf-8")
+    assert md_new == expected
