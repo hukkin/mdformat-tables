@@ -3,6 +3,11 @@
 [![Build Status][ci-badge]][ci-link]
 [![PyPI version][pypi-badge]][pypi-link]
 
+> ⚠️ **Important** ⚠️
+>
+> Mdformat-tables has moved to [mdformat-gfm](https://github.com/hukkin/mdformat-gfm).
+> You should use the GFM plugin for tables support from now on.
+
 An [mdformat](https://github.com/hukkin/mdformat) plugin for rendering tables.
 
 For example, converting:
